@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zen Tic-Tac-Toe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .square-inner {
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .square-active:active .square-inner {
+            transform: scale(0.9);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes zen-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 0 25px 10px rgba(99, 102, 241, 0.2); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        @keyframes zen-pulse-rose {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 0 25px 10px rgba(244, 63, 94, 0.2); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+        }
+
+        @keyframes pop-in {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes victory-reveal {
+            0% { transform: scale(1); filter: brightness(1); }
+            20% { transform: scale(1.4); filter: brightness(1.3); }
+            50% { transform: scale(1.2); filter: brightness(1.1); }
+            100% { transform: scale(1.2); filter: brightness(1); }
+        }
+
+        @keyframes zen-thinking {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-zen-win-x {
+            animation: victory-reveal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, zen-pulse 2s infinite ease-in-out 0.6s;
+        }
+
+        .animate-zen-win-o {
+            animation: victory-reveal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, zen-pulse-rose 2s infinite ease-in-out 0.6s;
+        }
+
+        .animate-pop-in {
+            animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .animate-zen-thinking-1 { animation: zen-thinking 1.2s infinite 0s; }
+        .animate-zen-thinking-2 { animation: zen-thinking 1.2s infinite 0.2s; }
+        .animate-zen-thinking-3 { animation: zen-thinking 1.2s infinite 0.4s; }
+
+        .winning-symbol {
+            transition: all 0.5s ease;
+        }
+
+        .is-winning .winning-symbol {
+            filter: drop-shadow(0 0 12px currentColor);
+            transform: scale(1.3);
+            font-weight: 800;
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-50 text-slate-900 transition-colors duration-300">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
